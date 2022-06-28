@@ -14,7 +14,13 @@
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.WgpuLimits.html" title="bevy::render::settings::WgpuLimits struct">WgpuLimits</a></div><div class="item-right docblock-short"><p>Represents the sets of limits an adapter/device supports.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.WgpuSettings.html" title="bevy::render::settings::WgpuSettings struct">WgpuSettings</a></div><div class="item-right docblock-short"><p>Provides configuration for renderer initialization. Use <a href="../renderer/struct.RenderDevice.html#method.features"><code>RenderDevice::features</code></a>,
 <a href="../renderer/struct.RenderDevice.html#method.limits"><code>RenderDevice::limits</code></a>, and the <a href="../render_resource/struct.WgpuAdapterInfo.html"><code>WgpuAdapterInfo</code></a>
-resource to get runtime information about the actual adapter, backend, features, and limits.</p>
+resource to get runtime information about the actual adapter, backend, features, and limits.
+NOTE: <a href="struct.Backends.html#associatedconstant.DX12"><code>Backends::DX12</code></a>, <a href="struct.Backends.html#associatedconstant.METAL"><code>Backends::METAL</code></a>, and
+<a href="struct.Backends.html#associatedconstant.VULKAN"><code>Backends::VULKAN</code></a> are enabled by default for non-web and the best choice
+is automatically selected. Web using the <code>webgl</code> feature uses <a href="struct.Backends.html#associatedconstant.GL"><code>Backends::GL</code></a>.
+NOTE: If you want to use <a href="struct.Backends.html#associatedconstant.GL"><code>Backends::GL</code></a> in a native app on Windows, you must
+use <a href="https://github.com/gfx-rs/wgpu#angle"><code>ANGLE</code></a>. This is because wgpu requires EGL to
+create a GL context without a window and only ANGLE supports that.</p>
 </div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
 <div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.PowerPreference.html" title="bevy::render::settings::PowerPreference enum">PowerPreference</a></div><div class="item-right docblock-short"><p>Power Preference when choosing a physical adapter.</p>
 </div></div><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.WgpuSettingsPriority.html" title="bevy::render::settings::WgpuSettingsPriority enum">WgpuSettingsPriority</a></div><div class="item-right docblock-short"><p>Configures the priority used when automatically configuring the features/limits of <code>wgpu</code>.</p>
