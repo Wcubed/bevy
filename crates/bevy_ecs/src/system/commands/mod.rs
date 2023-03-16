@@ -842,6 +842,8 @@ where
     }
 }
 
+/// [`Command`] for spawning an [`Entity`] with a [`Bundle`].
+/// See [`Commands::spawn`] or [`World::spawn`] for more details.
 #[derive(Debug)]
 pub struct Spawn<T> {
     pub bundle: T,
@@ -856,6 +858,9 @@ where
     }
 }
 
+/// [`Command`] for creating a new [`Entity`] if the given one does not exists. Returns the
+/// corresponding [`EntityCommands`].
+/// See [`Commands::get_or_spawn`] or [`World::get_or_spawn`] for more details.
 pub struct GetOrSpawn {
     entity: Entity,
 }
@@ -866,6 +871,8 @@ impl Command for GetOrSpawn {
     }
 }
 
+/// [`Command`] for creating entities with a particular [`Bundle`] type.
+/// See [`Commands::spawn_batch`] or [`World::spawn_batch`] for more details.
 pub struct SpawnBatch<I>
 where
     I: IntoIterator,
@@ -884,6 +891,8 @@ where
     }
 }
 
+/// [`Command`] for creating entities, if needed, and adding a [`Bundle`] to each [`Entity`].
+/// See [`Commands::insert_or_spawn_batch`] or [`World::insert_or_spawn_batch`] for more details.
 pub struct InsertOrSpawnBatch<I, B>
 where
     I: IntoIterator + Send + Sync + 'static,
@@ -910,6 +919,8 @@ where
     }
 }
 
+/// [`Command`] to despawn a given [`Entity`].
+/// See [`EntityCommands::despawn`] or [`World::despawn`] for more details.
 #[derive(Debug)]
 pub struct Despawn {
     pub entity: Entity,
@@ -921,6 +932,8 @@ impl Command for Despawn {
     }
 }
 
+/// [`Command`] for inserting a [`Bundle`] of components on an [`Entity`].
+/// See [`EntityCommands::insert`] for more details.
 pub struct Insert<T> {
     pub entity: Entity,
     pub bundle: T,
@@ -939,6 +952,8 @@ where
     }
 }
 
+/// [`Command`] for removing a [`Bundle`] of components from the entity.
+/// See [`EntityCommands::remove`] for more details.
 #[derive(Debug)]
 pub struct Remove<T> {
     pub entity: Entity,
@@ -956,6 +971,8 @@ where
     }
 }
 
+/// [`Command`] for inserting a [`Resource`] in the [`World`] with an inferred value.
+/// See [`Commands::init_resource`] or [`World::init_resource`] for more details.
 pub struct InitResource<R: Resource + FromWorld> {
     _phantom: PhantomData<R>,
 }
@@ -966,6 +983,8 @@ impl<R: Resource + FromWorld> Command for InitResource<R> {
     }
 }
 
+/// [`Command`] for inserting a [`Resource`] in the [`World`] with a specific value.
+/// See [`Commands::insert_resource`] or [`World::insert_resource`] for more details.
 pub struct InsertResource<R: Resource> {
     pub resource: R,
 }
@@ -976,6 +995,8 @@ impl<R: Resource> Command for InsertResource<R> {
     }
 }
 
+/// [`Command`] for removing a [`Resource`] from the [`World`].
+/// See [`Commands::remove_resource`] or [`World::remove_resource`] for more details.
 pub struct RemoveResource<R: Resource> {
     pub phantom: PhantomData<R>,
 }
